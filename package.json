@@ -9,7 +9,8 @@
     "prestart": "ejs index.ejs -o index.ts",
     "start": "tsc",
     "poststart": "npm run docs",
-    "docs": "rm -rf docs && typedoc --name 'JSON Schema EDTF validators' index.ts && touch docs/.nojekyll"
+    "docs": "rm -rf docs && typedoc --name 'JSON Schema EDTF validators' index.ts && touch docs/.nojekyll",
+    "postversion": "git push --follow-tags"
   },
   "repository": {
     "type": "git",
