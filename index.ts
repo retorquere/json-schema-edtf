@@ -13,11 +13,12 @@ export function validate(date, options) {
   }
 }
 
-export type Validator = (date: string) => boolean
 /**
  * Formats to be used in `{ type: 'string', format: 'edtf/level-1' }` type JSON schemas
  */
-export const formats: Record<string, Validator> = {
+export type Format = 'edtf/level-0' | 'edtf/level-1' | 'edtf/level-2' | 'edtf/level-0+season-intervals' | 'edtf/level-1+season-intervals' | 'edtf/level-2+season-intervals'
+export type Validator = (date: string) => boolean
+export const formats: Record<Format, Validator> = {
   'edtf/level-0': (date: string) => validate(date, { level: 0 }),
   'edtf/level-1': (date: string) => validate(date, { level: 1 }),
   'edtf/level-2': (date: string) => validate(date, { level: 2 }),

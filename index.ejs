@@ -13,14 +13,25 @@ export function validate(date, options) {
   }
 }
 
-export type Validator = (date: string) => boolean
 /**
  * Formats to be used in `{ type: 'string', format: 'edtf/level-1' }` type JSON schemas
  */
-export const formats: Record<string, Validator> = {
-<%_ for (const seasonIntervals of [false, true]) { _%>
-  <%_ for (const level of [0, 1, 2]) { _%>
-  'edtf/level-<%= level %><%= seasonIntervals ? '+season-intervals' : '' %>': (date: string) => validate(date, { level: <%= level %><%= seasonIntervals ? ', seasonIntervals: true' : ''%> }),
-  <%_ } _%>
+<%_
+  const formats = []
+  for (const seasonIntervals of [false, true]) {
+    for (const level of [0, 1, 2]) {
+      formats.push({
+        format: `edtf/level-${level}${seasonIntervals ? '+season-intervals' : '' }`,
+        level,
+        seasonIntervals,
+      })
+    }
+  }
+_%>
+export type Format = <%- formats.map(f => `'${f.format}'`).join(' | ') %>
+export type Validator = (date: string) => boolean
+export const formats: Record<Format, Validator> = {
+  <%_ for (const format of formats) { _%>
+  '<%= format.format %>': (date: string) => validate(date, { level: <%= format.level %><%= format.seasonIntervals ? ', seasonIntervals: true' : ''%> }),
 <%_ } _%>
 }

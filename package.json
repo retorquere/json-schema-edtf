@@ -8,7 +8,7 @@
     "pretest": "npm start",
     "prestart": "ejs index.ejs -o index.ts",
     "start": "tsc",
-    "postart": "npm run docs",
+    "poststart": "npm run docs",
     "docs": "rm -rf docs && typedoc --name 'JSON Schema EDTF validators' index.ts && touch docs/.nojekyll"
   },
   "repository": {

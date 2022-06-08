@@ -51,8 +51,8 @@ jobs:
           ~/.npm
           node_modules
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
-    - name: install node dependencies
-      run: npm install
+    - name: install node dependencies and generate code
+      run: npm install && npm start
     - name: Publish
       uses: JS-DevTools/npm-publish@v1
       with:
