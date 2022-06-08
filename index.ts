@@ -13,7 +13,7 @@ export function validate(date, options) {
   }
 }
 
-type Validator = (date: string) => boolean
+export type Validator = (date: string) => boolean
 export const formats: Record<string, Validator> = {}
 for (const _seasonIntervals of [false, true]) {
   for (const _level of [0, 1, 2]) {

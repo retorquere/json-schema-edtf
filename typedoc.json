@@ -1,0 +1,9 @@
+{
+  "out": "docs",
+  "exclude": "+(test|node_modules)",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "hideGenerator": true,
+  "gitRevision": "master"
+}
