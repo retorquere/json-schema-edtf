@@ -14,12 +14,14 @@ export function validate(date, options) {
 }
 
 export type Validator = (date: string) => boolean
-export const formats: Record<string, Validator> = {}
-for (const _seasonIntervals of [false, true]) {
-  for (const _level of [0, 1, 2]) {
-    ((level, seasonIntervals) => {
-      const fmt = `edtf/level-${level}${seasonIntervals ? '+season-intervals' : ''}`
-      formats[fmt] = date => validate(date, { level, seasonIntervals })
-    })(_level, _seasonIntervals)
-  }
+/**
+ * Formats to be used in `{ type: 'string', format: 'edtf/level-1' }` type JSON schemas
+ */
+export const formats: Record<string, Validator> = {
+  'edtf/level-0': (date: string) => validate(date, { level: 0 }),
+  'edtf/level-1': (date: string) => validate(date, { level: 1 }),
+  'edtf/level-2': (date: string) => validate(date, { level: 2 }),
+  'edtf/level-0+season-intervals': (date: string) => validate(date, { level: 0, seasonIntervals: true }),
+  'edtf/level-1+season-intervals': (date: string) => validate(date, { level: 1, seasonIntervals: true }),
+  'edtf/level-2+season-intervals': (date: string) => validate(date, { level: 2, seasonIntervals: true }),
 }

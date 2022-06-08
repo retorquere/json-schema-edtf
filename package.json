@@ -6,6 +6,7 @@
   "scripts": {
     "test": "mocha",
     "pretest": "npm start",
+    "prestart": "ejs index.ejs -o index.ts",
     "start": "tsc",
     "postart": "npm run docs",
     "docs": "rm -rf docs && typedoc --name 'JSON Schema EDTF validators' index.ts && touch docs/.nojekyll"
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "ajv": "^8.11.0",
+    "ejs": "^3.1.8",
     "is-my-json-valid": "^2.20.6",
     "jsen": "^0.6.6",
     "mocha": "^10.0.0",

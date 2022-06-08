@@ -14,9 +14,9 @@ const schema = {
 const { formats } = require('../index')
 
 const Ajv = require("ajv")
-const ajv = require('../ajv').addFormat(new Ajv)
+const ajv = require('../ajv').addFormats(new Ajv)
 
-const ZSchema = require('../z-schema').addFormat(require('z-schema'))
+const ZSchema = require('../z-schema').addFormats(require('z-schema'))
 const zschema = new ZSchema
 console.log(ZSchema.getRegisteredFormats())
 
