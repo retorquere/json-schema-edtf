@@ -1,6 +1,6 @@
 {
   "name": "json-schema-edtf",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "EDTF validators for JSON-schema",
   "main": "index.js",
   "scripts": {
